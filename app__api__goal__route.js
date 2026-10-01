@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server'; import {jsonAI,guide} from '../../../lib/ai';
+export async function POST(req){try{const {goal}=await req.json(); const d=await jsonAI(guide,`User goal: ${goal}\nTurn it into a concise SMART destination and first tiny action. JSON: {smartGoal:string,currentAction:string,estimatedMinutes:number,completionCriteria:string}`);return NextResponse.json(d)}catch(e){return NextResponse.json({error:e.message},{status:500})}}
